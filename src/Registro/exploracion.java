@@ -68,8 +68,8 @@ class panel extends JPanel{
 			String url = "jdbc:mysql://localhost/Restaurante";
 			String usr = "root";
 
-			String psw = "RARO97";
-			//String psw = "";
+			//String psw = "RARO97";
+			String psw = "";
 
 			Connection conexion = (Connection) DriverManager.getConnection(url, usr, psw);
 			

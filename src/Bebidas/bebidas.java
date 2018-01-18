@@ -261,7 +261,8 @@ public class bebidas extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/Restaurante";
 					String usr = "root";
-					String psw = "RARO97";
+					//String psw = "RARO97";
+					String psw = "";
 					
 					con = DriverManager.getConnection(url, usr, psw);
 					

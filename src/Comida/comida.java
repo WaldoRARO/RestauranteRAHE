@@ -332,8 +332,8 @@ public class comida extends JFrame implements ActionListener{
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/Restaurante";
 					String usr = "root";
-					String psw = "RARO97";
-					//String psw = "";//
+					//String psw = "RARO97";
+					String psw = "";//
 					con = DriverManager.getConnection(url, usr, psw);
 					
 					//String comida= textFieldresultado.getText();
