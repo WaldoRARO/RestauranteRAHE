@@ -268,7 +268,7 @@ public class bebidas extends JFrame {
 					
 					
 					String bebida = bebidas.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_bebida (bebidas) values ('"+bebida+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+bebida+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
@@ -313,7 +313,7 @@ public class bebidas extends JFrame {
 					
 					
 					String alco = alcohol.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_bebida (bebidas) values ('"+alco+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+alco+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
@@ -361,7 +361,7 @@ public class bebidas extends JFrame {
 					
 					
 					String aguas = agua.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_bebida (bebidas) values ('"+aguas+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+aguas+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
@@ -407,7 +407,7 @@ public class bebidas extends JFrame {
 					
 					
 					String preparada = aguaPreparada.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_bebida (bebidas) values ('"+preparada+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+preparada+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");

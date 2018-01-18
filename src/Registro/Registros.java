@@ -68,8 +68,8 @@ public class Registros extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/restaurante";
 					String usr = "root";
-					//String psw = "RARO97";
-					String psw = "";//
+					String psw = "RARO97";
+					//String psw = "";//
 
 					
 					con = DriverManager.getConnection(url, usr, psw);
@@ -80,16 +80,17 @@ public class Registros extends JFrame {
 					System.out.println("Error con la  conexión de BD");
 				}
 				
-				String sql = "SELECT * FROM alimentos";
+				String sql = "select * from alimentos";
 				Statement st;
 				
 				DefaultTableModel modelo = new DefaultTableModel();
 				modelo.addColumn("PLATILLOS RODENADOS");
 				modelo.addColumn("comida");
+				
 
 					table.setModel(modelo);
 					
-					String[] dato = new String[2];
+					String[] dato = new String[3];
 					try {
 						st = con.createStatement();
 						ResultSet resul = st.executeQuery(sql);
@@ -105,21 +106,29 @@ public class Registros extends JFrame {
 					}
 			}
 		}); 
-		btnInsertar.setBounds(10, 374, 89, 23);
+		btnInsertar.setBounds(10, 256, 89, 23);
 		contentPane.add(btnInsertar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(29, 58, 395, 234);
+		scrollPane.setBounds(10, 11, 414, 234);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
+		JButton btnModificar = new JButton("modificar");
+		btnModificar.setBounds(120, 256, 89, 23);
+		contentPane.add(btnModificar);
+		
+		JButton btnActu = new JButton("actualizar");
+		btnActu.setBounds(227, 256, 89, 23);
+		contentPane.add(btnActu);
+		
+		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.setBounds(335, 256, 89, 23);
+		contentPane.add(btnEliminar);
+		
 	
 		
 	}
-
-	
-
-
 }

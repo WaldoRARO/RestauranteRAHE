@@ -156,7 +156,7 @@ public class Postres extends JFrame {
 					//String comida= textFieldresultado.getText();
 					//carne.getSelectedItem().toString();
 					String cora = especial.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_postres (postres) values ('"+cora+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+cora+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
@@ -198,14 +198,14 @@ public class Postres extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/Restaurante";
 					String usr = "root";
-					//String psw = "RARO97";
-					String psw = "";//
+					String psw = "RARO97";
+					//String psw = "";//
 					con = DriverManager.getConnection(url, usr, psw);
 					
 					//String comida= textFieldresultado.getText();
 					//carne.getSelectedItem().toString();
 					String cora = helados.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_postres (postres) values ('"+cora+"')";	
+					String query = "INSERT INTO alimentos (comida) values ('"+cora+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
@@ -245,7 +245,7 @@ public class Postres extends JFrame {
 					//String comida= textFieldresultado.getText();
 					//carne.getSelectedItem().toString();
 					String cora = tartas.getSelectedItem().toString();	
-					String query = "INSERT INTO tb_postres (postres) values ('"+cora+"')";	
+					String query = "INSERT INTOalimentos (comida) values ('"+cora+"')";	
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
