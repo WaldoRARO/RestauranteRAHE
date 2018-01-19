@@ -33,7 +33,6 @@ public class Registros extends JFrame {
 	private JTable table_2;
 	private JTable table;
 
-
 	/**
 	 * Launch the application.
 	 */
