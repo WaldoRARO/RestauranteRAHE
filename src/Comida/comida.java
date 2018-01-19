@@ -365,7 +365,7 @@ public class comida extends JFrame implements ActionListener{
 		
 		JLabel lblNewLabel_4 = new JLabel("New label");
 		lblNewLabel_4.setIcon(new ImageIcon(comida.class.getResource("/ima1/comida.jpg")));
-		lblNewLabel_4.setBounds(0, 0, 794, 571);
+		lblNewLabel_4.setBounds(0, 0, 809, 600);
 		contentPane.add(lblNewLabel_4);
 		
 		

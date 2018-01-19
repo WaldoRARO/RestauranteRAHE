@@ -10,6 +10,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Bebidas.bebidas;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -21,6 +24,8 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
+import java.awt.Font;
+import java.awt.Color;
 
 public class Registros extends JFrame {
 
@@ -120,25 +125,36 @@ public class Registros extends JFrame {
 		scrollPane.setViewportView(table);
 		
 		JButton btnModificar = new JButton("modificar");
-		btnModificar.setBounds(144, 380, 89, 23);
+		btnModificar.setBounds(210, 380, 89, 23);
 		contentPane.add(btnModificar);
 		
 		JButton btnActu = new JButton("actualizar");
-		btnActu.setBounds(266, 380, 89, 23);
+		btnActu.setBounds(488, 380, 89, 23);
 		contentPane.add(btnActu);
 		
 		JButton btnEliminar = new JButton("eliminar");
-		btnEliminar.setBounds(395, 380, 89, 23);
+		btnEliminar.setBounds(714, 380, 89, 23);
 		contentPane.add(btnEliminar);
 		
 		JLabel lblNewLabel = new JLabel("REGISTRO DE SU ORDEN");
+		lblNewLabel.setForeground(Color.WHITE);
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(310, 11, 152, 23);
+		lblNewLabel.setBounds(10, 11, 793, 23);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("New label");
-		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/rojo.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 834, 561);
+		JButton btnRegresar = new JButton("regresar");
+		btnRegresar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 Registros.this.dispose();
+			}
+		});
+		btnRegresar.setBounds(714, 503, 89, 23);
+		contentPane.add(btnRegresar);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/restaurante.jpg")));
+		lblNewLabel_1.setBounds(0, 0, 854, 595);
 		contentPane.add(lblNewLabel_1);
 		
 	
