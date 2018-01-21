@@ -11,6 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import com.mysql.jdbc.PreparedStatement;
+
 import Bebidas.bebidas;
 
 import javax.swing.JButton;
@@ -26,6 +28,8 @@ import javax.swing.SwingConstants;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.Color;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class Registros extends JFrame {
 
@@ -92,7 +96,7 @@ public class Registros extends JFrame {
 				
 				DefaultTableModel modelo = new DefaultTableModel();
 				modelo.addColumn("PLATILLOS RODENADOS");
-				modelo.addColumn("comida");
+			//	modelo.addColumn("comida");
 				
 
 					table.setModel(modelo);
@@ -103,7 +107,7 @@ public class Registros extends JFrame {
 						ResultSet resul = st.executeQuery(sql);
 						
 						while (resul.next()) {
-							dato[0]=resul.getString(1);
+							//dato[0]=resul.getString(1);
 							dato[0]=resul.getString(2);
 							
 							modelo.addRow(dato);
@@ -132,6 +136,10 @@ public class Registros extends JFrame {
 		contentPane.add(btnActu);
 		
 		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addMouseListener(new MouseAdapter() {
+			
+			}
+		);
 		btnEliminar.setBounds(714, 380, 89, 23);
 		contentPane.add(btnEliminar);
 		
@@ -155,8 +163,13 @@ public class Registros extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/restaurante.jpg")));
 		lblNewLabel_1.setBounds(0, 0, 854, 595);
 		contentPane.add(lblNewLabel_1);
-		
-	
-		
 	}
+
+
+		public void eliminar() throws SQLException {
+			
+		}
+
+
+
 }
