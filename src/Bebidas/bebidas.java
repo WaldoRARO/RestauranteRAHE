@@ -30,6 +30,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -53,6 +54,7 @@ public class bebidas extends JFrame {
 	private JComboBox<String> alcohol;
 	private JComboBox<String> agua;
 	private JComboBox<String> aguaPreparada; 
+
 	
 	Formulario.restaurante form = new Formulario.restaurante();
 	private JTextField txtResultado;
@@ -76,8 +78,9 @@ public class bebidas extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public bebidas() {
+	public bebidas() throws SQLException {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
@@ -119,31 +122,46 @@ public class bebidas extends JFrame {
 		btnNewButton.setBounds(46, 520, 128, 30);
 		contentPane.add(btnNewButton);
 		
+		Connection con = null;
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/restaurante";
+			String usr = "root";
+			String psw = "RARO97";
+			//String psw = "";//
+
+			
+			con = DriverManager.getConnection(url, usr, psw);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error");
+		} catch (SQLException e) {
+			System.out.println("Error con la  conexión de BD");
+		}
+		
+		
+		
 		bebidas = new JComboBox<String>();
 		bebidas.setForeground(SystemColor.desktop);
 		bebidas.setFont(new Font("Arial Black", Font.PLAIN, 13));
 		bebidas.setBackground(SystemColor.controlHighlight);
 		bebidas.setBounds(196, 101, 408, 38);
 		getContentPane().add(bebidas);
-		
 		bebidas.addItem("");
-		bebidas.addItem("Coca Cola");
-		bebidas.addItem("Pepsi");
-		bebidas.addItem("Sprite");
-		bebidas.addItem("Manzana");
-		bebidas.addItem("Sidral");
-		bebidas.addItem("Fresca");
-		bebidas.addItem("Refresco de Vainilla");
-		bebidas.addItem("Agua Mineral");
+	
 		
-		bebidas.addItemListener(new ItemListener() {
+		Statement sta = con.createStatement();
+		ResultSet res = sta.executeQuery("SELECT * FROM refresco");
+		while(res.next()) {
 			
-			@Override
-			public void itemStateChanged(ItemEvent e) {
-				// TODO Auto-generated method stub
-				
-			}
-		});
+			this.bebidas.addItem(res.getString("bebida"));
+		}
+		
+		
+		
+	
+		
 		
 		alcohol = new JComboBox<String>();
 		alcohol.setForeground(SystemColor.desktop);
@@ -153,16 +171,14 @@ public class bebidas extends JFrame {
 		getContentPane().add(alcohol);
 		
 		alcohol.addItem("");
-		alcohol.addItem("Corona");                 alcohol.addItem("Bacardi Solera");
-		alcohol.addItem("Negra Modelo");           alcohol.addItem("Absolut Azul");
-		alcohol.addItem("Estrella");               
-		alcohol.addItem("Old Parr");
-		alcohol.addItem("Herradura Antiguo");
-		alcohol.addItem("Don Julio Reposado");
-		alcohol.addItem("Cazadores Reposado");
-		alcohol.addItem("Martell Cordon Blue");
-		alcohol.addItem("Torres 10");
-		alcohol.addItem("Azteca de Oro");
+
+		Statement sta1 = con.createStatement();
+		ResultSet res1 = sta1.executeQuery("SELECT * FROM bebida_alcoholica");
+		while(res1.next()) {
+			
+			this.alcohol.addItem(res1.getString("bebida"));
+		}
+		
 		
 		alcohol.addItemListener(new ItemListener() {
 			
@@ -182,12 +198,15 @@ public class bebidas extends JFrame {
 		getContentPane().add(agua);
 		
 		agua.addItem("");
-		agua.addItem("Agua de Horchata");
-		agua.addItem("Agua de Jamaica");
-		agua.addItem("Limonada");
-		agua.addItem("Cocada");
-		agua.addItem("Piñada");
-		agua.addItem("Tamarindo");
+		Statement sta3 = con.createStatement();
+		ResultSet res3 = sta3.executeQuery("SELECT * FROM aguas");
+		while(res3.next()) {
+			
+			this.agua.addItem(res3.getString("bebida"));
+		}
+		
+		
+		
 		
 	
 		agua.addItemListener(new ItemListener() {
@@ -209,12 +228,14 @@ public class bebidas extends JFrame {
 		getContentPane().add(aguaPreparada);
 		
 		aguaPreparada.addItem("");
-		aguaPreparada.addItem("Agua Preparada");
-		aguaPreparada.addItem("Agua de Jamaica");
-		aguaPreparada.addItem("Limonada");
-		aguaPreparada.addItem("Cocada");
-		aguaPreparada.addItem("Piñada");
-		aguaPreparada.addItem("Tamarindo");
+		Statement sta2 = con.createStatement();
+		ResultSet res2 = sta2.executeQuery("SELECT * FROM bebida_preparadas");
+		while(res2.next()) {
+			
+			this.aguaPreparada.addItem(res2.getString("bebida"));
+		}
+		
+		
 		
 		aguaPreparada.addItemListener(new ItemListener() {
 			
@@ -261,8 +282,8 @@ public class bebidas extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/Restaurante";
 					String usr = "root";
-					//String psw = "RARO97";
-					String psw = "";
+					String psw = "RARO97";
+					//String psw = "";
 					
 					con = DriverManager.getConnection(url, usr, psw);
 					
@@ -272,7 +293,7 @@ public class bebidas extends JFrame {
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					//textFieldresultado.setText("");
-					JOptionPane.showMessageDialog(null, "BEBIDA ORDENADA" + "\n"+ bebida);
+					JOptionPane.showMessageDialog(null, "BEBIDA ORDENADA :" + "\n"+ bebida);
 					
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");

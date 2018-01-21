@@ -90,11 +90,18 @@ public class restaurante extends JFrame  {
 		bebidas.setIcon(new ImageIcon("src/ima1/vino.png"));
 		bebidas.setFont(new Font("Tahoma", Font.BOLD, 13));
 		bebidas.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				bebidas bebidas = new bebidas();
-				bebidas.setVisible(true);
-			}
-		});
+			public void actionPerformed(ActionEvent arg0) {
+				bebidas bebi = null;
+				try {
+					bebi = new bebidas();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				bebi.setVisible(true);
+					
+				}
+			});
 		toolBar.add(bebidas);
 		
 		JButton postre = new JButton("POSTRES");
