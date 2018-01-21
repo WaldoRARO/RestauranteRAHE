@@ -20,6 +20,7 @@ import javax.swing.JToolBar;
 import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -72,8 +73,14 @@ public class restaurante extends JFrame  {
 		comi.setFont(new Font("Tahoma", Font.BOLD, 13));
 		comi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			comida comida = new comida();
-			comida.setVisible(true);
+			comida comid = null;
+			try {
+				comid = new comida();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			comid.setVisible(true);
 				
 			}
 		});

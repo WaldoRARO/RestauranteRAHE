@@ -35,6 +35,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -74,8 +75,9 @@ public class comida extends JFrame implements ActionListener{
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public comida() {
+	public comida() throws SQLException {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 800, 600);
@@ -86,22 +88,38 @@ public class comida extends JFrame implements ActionListener{
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null);
 		
+		///////COMBOBOX////////
+		Connection con = null;
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/restaurante";
+			String usr = "root";
+			//String psw = "RARO97";
+			String psw = "";//
+
+			
+			con = DriverManager.getConnection(url, usr, psw);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error");
+		} catch (SQLException e) {
+			System.out.println("Error con la  conexión de BD");
+		}
+		
 		carne = new JComboBox<String>();
 		carne.setForeground(new Color(255, 250, 250));
 		carne.setFont(new Font("Arial Black", Font.PLAIN, 13));
 		carne.setBackground(new Color(0, 128, 128));
 		carne.setBounds(10, 446, 348, 29);
-		getContentPane().add(carne);
-		
+		getContentPane().add(carne);	
 		carne.addItem("");
-		carne.addItem("Puyazo \"Best Seller\"");
-		carne.addItem("Filete Blue Cheese");
-		carne.addItem("Filete de Res de Exportación");
-		carne.addItem("Filete Mignon");
-		carne.addItem("Filete de Res Nacional");
-		carne.addItem("Lomo de Costilla 10 OZ");
-		carne.addItem("Lomo de Costilla 16 OZ");
-		carne.addItem("Fajitas de Res");
+		Statement sent = con.createStatement();
+		ResultSet res = sent.executeQuery("SELECT * FROM carne");
+		while(res.next()) {
+			
+			this.carne.addItem(res.getString("platillo"));
+		}
 		
 		
 		mariscos = new JComboBox<String>();
@@ -111,12 +129,43 @@ public class comida extends JFrame implements ActionListener{
 		mariscos.setBounds(420, 446, 348, 29);
 		getContentPane().add(mariscos);
 		mariscos.addItem("");
-		mariscos.addItem("Filete de Pescado");
-		mariscos.addItem("Camarones Empanizados");
-		mariscos.addItem("Camarones al Ajillo");
-		mariscos.addItem("Pescado a \"la Tipitapa\"");
-		mariscos.addItem("Curritos de Pescado");
-		mariscos.addItem("Especial de Langosta");
+		Statement sent1 = con.createStatement();
+		ResultSet res1 = sent1.executeQuery("SELECT * FROM mariscos");
+		while(res1.next()) {
+			
+			this.mariscos.addItem(res1.getString("platillo"));
+		}
+		
+		
+		entradas = new JComboBox<String>();
+		entradas.setForeground(new Color(255, 250, 250));
+		entradas.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		entradas.setBackground(new Color(0, 128, 128));
+		entradas.setBounds(10, 192, 364, 29);
+		contentPane.add(entradas);
+		entradas.addItem("");
+		Statement sent2 = con.createStatement();
+		ResultSet res2 = sent2.executeQuery("SELECT * FROM entrada");
+		while(res2.next()) {
+			
+			this.entradas.addItem(res2.getString("platillo"));
+		}
+
+		ensaladas = new JComboBox<String>();
+		ensaladas.setForeground(new Color(255, 250, 250));
+		ensaladas.setBackground(new Color(0, 128, 128));
+		ensaladas.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		ensaladas.setBounds(420, 192, 348, 29);
+		contentPane.add(ensaladas);
+		ensaladas.addItem("");
+		Statement sent3 = con.createStatement();
+		ResultSet res3 = sent3.executeQuery("SELECT * FROM ensaladas");
+		while(res3.next()) {
+			
+			this.ensaladas.addItem(res3.getString("platillo"));
+		}
+		//////////////FIN DE LOS COMBOBOX///////////
+		
 		
 		JLabel lblNewLabel = new JLabel("CARNES");
 		lblNewLabel.setForeground(new Color(255, 250, 250));
@@ -195,21 +244,7 @@ public class comida extends JFrame implements ActionListener{
 		lblNewLabel_2.setBounds(10, 152, 138, 29);
 		contentPane.add(lblNewLabel_2);
 		
-		entradas = new JComboBox<String>();
-		entradas.setForeground(new Color(255, 250, 250));
-		entradas.setFont(new Font("Arial Black", Font.PLAIN, 13));
-		entradas.setBackground(new Color(0, 128, 128));
-		entradas.setBounds(10, 192, 364, 29);
-		contentPane.add(entradas);
-		entradas.addItem("");
-		entradas.addItem("Tostones con Bolitas de carne");
-		entradas.addItem("Tostones Rellenos");
-		entradas.addItem("Tostones Mini Churrasco");
-		entradas.addItem("Tostones Mini Jalapeños");
-		entradas.addItem("Frijolitos Refritos");
-		entradas.addItem("Súper Nachos Nica");
-		entradas.addItem("Quesadillas de res, Pollo o Cerdo");
-		entradas.addItem("Parrillada de Chorizos Importados");
+		
 	
 		
 		JLabel lblEntradas = new JLabel("ENSALADA");
@@ -218,17 +253,7 @@ public class comida extends JFrame implements ActionListener{
 		lblEntradas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblEntradas.setBounds(630, 154, 138, 24);
 		contentPane.add(lblEntradas);
-		ensaladas = new JComboBox<String>();
-		ensaladas.setForeground(new Color(255, 250, 250));
-		ensaladas.setBackground(new Color(0, 128, 128));
-		ensaladas.setFont(new Font("Arial Black", Font.PLAIN, 13));
-		ensaladas.setBounds(420, 192, 348, 29);
-		contentPane.add(ensaladas);
-		ensaladas.addItem("");
-		ensaladas.addItem("Ensalada de La Casa");
-		ensaladas.addItem("Ensalada Cesar");
-		ensaladas.addItem("Ensalada César con Pollo");
-		ensaladas.addItem("Ensalada Iceberg");
+	
 		
 		JButton btnMari = new JButton("ORDENAR");
 		btnMari.setForeground(new Color(255, 255, 255));
