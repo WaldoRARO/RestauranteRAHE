@@ -109,7 +109,13 @@ public class restaurante extends JFrame  {
 		postre.setFont(new Font("Tahoma", Font.BOLD, 13));
 		postre.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Postres postre= new Postres();
+				Postres postre = null;
+				try {
+					postre = new Postres();
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 				postre.setVisible(true);
 			}
 		});

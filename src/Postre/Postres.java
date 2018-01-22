@@ -18,6 +18,7 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
@@ -47,27 +48,75 @@ public class Postres extends JFrame {
 
 	/**
 	 * Create the frame.
+	 * @throws SQLException 
 	 */
-	public Postres() {
+	public Postres() throws SQLException {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		////////////////COMBOBOX
+		Connection con = null;
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			String url = "jdbc:mysql://localhost/restaurante";
+			String usr = "root";
+		//String psw = "RARO97";
+			String psw = "";//
+
+			
+			con = DriverManager.getConnection(url, usr, psw);
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Error");
+		} catch (SQLException e) {
+			System.out.println("Error con la  conexión de BD");
+		}
 		
-		tartas = new JComboBox();
+		tartas = new JComboBox<String>();
 		tartas.setFont(new Font("Arial Black", Font.PLAIN, 13));
 		tartas.setBackground(Color.ORANGE);
 		tartas.setBounds(22, 127, 343, 36);
 		contentPane.add(tartas);
-		
 		tartas.addItem("");
-		tartas.addItem("Tarta de coco, dulce de leche y ricota");
-		tartas.addItem("Tarta de manzana vestida a la inglesa");
-		tartas.addItem("Tarta frutal de galletitas");
-		tartas.addItem("Tarta de ciruelas y damascos");
-		tartas.addItem("Tarta brillante de frutillas"); 
+		Statement sent = con.createStatement();
+		ResultSet res = sent.executeQuery("SELECT * FROM tartas");
+		while(res.next()) {
+			
+			this.tartas.addItem(res.getString("postre"));
+		}
+		
+		
+		helados = new JComboBox<String>();
+		helados.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		helados.setBackground(Color.ORANGE);
+		helados.setBounds(465, 233, 346, 36);
+		contentPane.add(helados);
+		helados.addItem("");
+		Statement sent1 = con.createStatement();
+		ResultSet res1 = sent1.executeQuery("SELECT * FROM helados");
+		while(res1.next()) {
+			
+			this.helados.addItem(res1.getString("postre"));
+		}
+		
+		especial = new JComboBox<String>();
+		especial.setFont(new Font("Arial Black", Font.PLAIN, 13));
+		especial.setBackground(Color.ORANGE);
+		especial.setBounds(22, 348, 343, 36);
+		contentPane.add(especial);	
+		especial.addItem("");
+		Statement sent2 = con.createStatement();
+		ResultSet res2 = sent2.executeQuery("SELECT * FROM especialidades");
+		while(res2.next()) {
+			
+			this.especial.addItem(res2.getString("postre"));
+		}
+
+		///////////////FIN DE LOS COMBOBOX
 		
 		JLabel lblTartas = new JLabel("TARTAS");
 		lblTartas.setForeground(Color.ORANGE);
@@ -83,22 +132,7 @@ public class Postres extends JFrame {
 		lblHelados.setBounds(685, 201, 126, 21);
 		contentPane.add(lblHelados);
 		
-		helados = new JComboBox();
-		helados.setFont(new Font("Arial Black", Font.PLAIN, 13));
-		helados.setBackground(Color.ORANGE);
-		helados.setBounds(465, 233, 346, 36);
-		contentPane.add(helados);
 		
-		helados.addItem("");
-		helados.addItem("Cafe Almendrado");
-		helados.addItem("Choco Almendra");
-		helados.addItem("Choco Chips");
-		helados.addItem("Coco");
-		helados.addItem("Fresa");
-		helados.addItem("Napolitano");
-		helados.addItem("Nuez");
-		helados.addItem("Pistache");
-		helados.addItem("Vainilla Cajeta y Nuez");
 
 		
 		JLabel lblVariedad = new JLabel("ESPECIALIDADES");
@@ -107,22 +141,7 @@ public class Postres extends JFrame {
 		lblVariedad.setHorizontalAlignment(SwingConstants.CENTER);
 		lblVariedad.setBounds(22, 310, 196, 21);
 		contentPane.add(lblVariedad);
-		
-		especial = new JComboBox();
-		especial.setFont(new Font("Arial Black", Font.PLAIN, 13));
-		especial.setBackground(Color.ORANGE);
-		especial.setBounds(22, 348, 343, 36);
-		contentPane.add(especial);
-		
-		especial.addItem("");
-		especial.addItem("Banana Split");
-		especial.addItem("Canasta Imerial");
-		especial.addItem("Copa Hawaii");
-		especial.addItem("Smoothie");
-		especial.addItem("Sundae");
-		especial.addItem("Capuccino");
-
-		
+	
 		JButton btnNewButton = new JButton("REGRESAR");
 		btnNewButton.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 16));
 		btnNewButton.setBackground(Color.RED);
