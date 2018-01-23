@@ -14,6 +14,7 @@ import javax.swing.table.DefaultTableModel;
 import com.mysql.jdbc.PreparedStatement;
 
 import Bebidas.bebidas;
+import utils.MySQLConexion;
 
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -73,48 +74,7 @@ public class Registros extends JFrame {
 		JButton btnInsertar = new JButton("insertar");
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Connection con = null;
-				try {
-					
-					Class.forName("com.mysql.jdbc.Driver");
-					String url = "jdbc:mysql://localhost/restaurante";
-					String usr = "root";
-					//String psw = "RARO97";
-					String psw = "";//
-
-					
-					con = DriverManager.getConnection(url, usr, psw);
-					
-				} catch (ClassNotFoundException e) {
-					System.out.println("Error");
-				} catch (SQLException e) {
-					System.out.println("Error con la  conexión de BD");
-				}
-				
-				String sql = "select * from alimentos";
-				Statement st;
-				
-				DefaultTableModel modelo = new DefaultTableModel();
-				modelo.addColumn("PLATILLOS RODENADOS");
-			//	modelo.addColumn("comida");
-				
-
-					table.setModel(modelo);
-					
-					String[] dato = new String[3];
-					try {
-						st = con.createStatement();
-						ResultSet resul = st.executeQuery(sql);
-						
-						while (resul.next()) {
-							//dato[0]=resul.getString(1);
-							dato[0]=resul.getString(2);
-							
-							modelo.addRow(dato);
-							
-						}
-					} catch (Exception e) {
-					}
+				mostrarDatos();
 			}
 		}); 
 		btnInsertar.setBounds(10, 380, 89, 23);
@@ -136,6 +96,15 @@ public class Registros extends JFrame {
 		contentPane.add(btnActu);
 		
 		JButton btnEliminar = new JButton("eliminar");
+		btnEliminar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+				 
+				 eliminacion();
+				 
+				
+			}
+		});
 		btnEliminar.addMouseListener(new MouseAdapter() {
 			
 			}
@@ -169,7 +138,89 @@ public class Registros extends JFrame {
 		public void eliminar() throws SQLException {
 			
 		}
+		
+		
+		public void mostrarDatos() {
 
+			Connection con = null;
+			try {
+				
+				Class.forName("com.mysql.jdbc.Driver");
+				String url = "jdbc:mysql://localhost/restaurante";
+				String usr = "root";
+				String psw = "RARO97";
+				//String psw = "";//
 
+				
+				con = DriverManager.getConnection(url, usr, psw);
+				
+			} catch (ClassNotFoundException e) {
+				System.out.println("Error");
+			} catch (SQLException e) {
+				System.out.println("Error con la  conexión de BD");
+			}
+			
+			String sql = "select * from alimentos";
+			Statement st;
+			
+			DefaultTableModel modelo = new DefaultTableModel();
+			modelo.addColumn("PLATILLOS RODENADOS");
+		//	modelo.addColumn("comida");
+			
+
+				table.setModel(modelo);
+				
+				String[] dato = new String[3];
+				try {
+					st = con.createStatement();
+					ResultSet resul = st.executeQuery(sql);
+					
+					while (resul.next()) {
+						//dato[0]=resul.getString(1);
+						dato[0]=resul.getString(2);
+						
+						modelo.addRow(dato);
+						
+					}
+				} catch (Exception e) {
+				}
+		
+		}
+ 
+		public void eliminacion() {
+			
+			
+
+			 Connection con = null;
+			 
+				try {
+					
+					Class.forName("com.mysql.jdbc.Driver");
+					String url = "jdbc:mysql://localhost/Restaurante";
+					String usr = "root";
+					String psw = "RARO97";
+					//String psw = "";
+					
+					con = DriverManager.getConnection(url, usr, psw);
+
+					int fila= table.getSelectedRow();
+					//System.out.println(table.getSelectedColumnCount());
+					String comida="";
+				
+					comida= table.getValueAt(fila, 0).toString();
+					
+		
+					 PreparedStatement pst=(PreparedStatement) con.prepareStatement("DELETE FROM alimentos WHERE comida='"+comida+"' ");
+					 pst.executeUpdate();
+					 mostrarDatos();
+					 
+						
+							
+				} catch (ClassNotFoundException e1) {
+					System.out.println("Error");
+				} catch (SQLException e1) {
+					System.out.println("Error con LAAa  conexión de BD");
+				}
+		}
 
 }

@@ -64,8 +64,8 @@ public class Postres extends JFrame {
 			Class.forName("com.mysql.jdbc.Driver");
 			String url = "jdbc:mysql://localhost/restaurante";
 			String usr = "root";
-		//String psw = "RARO97";
-			String psw = "";//
+		String psw = "RARO97";
+			//String psw = "";//
 
 			
 			con = DriverManager.getConnection(url, usr, psw);
