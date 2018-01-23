@@ -98,7 +98,7 @@ public class bebidas extends JFrame {
 		this.setLocationRelativeTo(null);
 		ImageIcon foto1 = new ImageIcon("src/ima1/coca.jpg");
 		
-		JLabel lblNewLabel = new JLabel("BEBIDAS ALCOHOLICAS");
+		JLabel lblNewLabel = new JLabel("BEBIDAS CON ALCOHOL");
 		lblNewLabel.setBackground(new Color(0, 0, 0));
 		lblNewLabel.setForeground(Color.WHITE);
 		lblNewLabel.setFont(new Font("DFGothic-EB", Font.BOLD, 22));
@@ -448,7 +448,7 @@ public class bebidas extends JFrame {
 		botonpreparadas.setBounds(628, 392, 122, 33);
 		contentPane.add(botonpreparadas);
 		
-		JLabel lblBeidasPreparadas = new JLabel("BEIDAS PREPARADAS");
+		JLabel lblBeidasPreparadas = new JLabel("BEBIDAS PREPARADAS");
 		lblBeidasPreparadas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBeidasPreparadas.setForeground(Color.WHITE);
 		lblBeidasPreparadas.setFont(new Font("DFGothic-EB", Font.BOLD, 22));
