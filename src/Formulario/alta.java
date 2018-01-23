@@ -56,12 +56,16 @@ public class alta extends JFrame {
 	 * Create the frame.
 	 */
 	public alta() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 1200, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
+		setResizable(false);
+
+
 		
 		textField = new JTextField();
 		textField.setBounds(20, 107, 338, 32);
@@ -119,7 +123,7 @@ public class alta extends JFrame {
 					String psw = "";
 					con = DriverManager.getConnection(url, usr, psw);
 					String usuario= textField_2.getText();
-					String query = "INSERT INTO ensaladas (platillo) values ('"+usuario+"')";
+					String query = "INSERT INTO entrada (platillo) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					textField.setText("");
@@ -149,7 +153,7 @@ public class alta extends JFrame {
 					String psw = "";
 					con = DriverManager.getConnection(url, usr, psw);
 					String usuario= textField_1.getText();
-					String query = "INSERT INTO entrada (platillo) values ('"+usuario+"')";
+					String query = "INSERT INTO ensaladas (platillo) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
 					textField.setText("");
@@ -167,6 +171,11 @@ public class alta extends JFrame {
 		contentPane.add(btnNewButton_2);
 		
 		JButton btnNewButton_3 = new JButton("SALIR");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				alta.this.dispose();
+			}
+		});
 		btnNewButton_3.setForeground(Color.ORANGE);
 		btnNewButton_3.setFont(new Font("Arial Black", Font.BOLD, 14));
 		btnNewButton_3.setBackground(Color.RED);

@@ -119,7 +119,7 @@ public class frmLogin extends JFrame {
 				salir();
 			}
 		});
-		btnSalir.setBounds(271, 147, 85, 23);
+		btnSalir.setBounds(232, 147, 85, 23);
 		contentPane.add(btnSalir);
 
 		JButton btnIngresar = new JButton("login");
@@ -131,7 +131,7 @@ public class frmLogin extends JFrame {
 				ingresar();
 			}
 		});
-		btnIngresar.setBounds(176, 147, 85, 23);
+		btnIngresar.setBounds(116, 147, 85, 23);
 		contentPane.add(btnIngresar);
 		
 		JLabel lblNewLabel = new JLabel("LOGIN");
@@ -160,12 +160,23 @@ public class frmLogin extends JFrame {
 				
 			}
 		});
-		btnAgregar.setBounds(78, 147, 85, 23);
+		btnAgregar.setBounds(10, 147, 85, 23);
 		contentPane.add(btnAgregar);
 		
+		JButton btnNewButton = new JButton("ALTA");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				alta alt = new alta();
+				alt.setVisible(true);
+				
+			}
+		});
+		btnNewButton.setBounds(338, 148, 89, 23);
+		contentPane.add(btnNewButton);
+		
 		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setIcon(new ImageIcon("src/ima1/Login.jpg"));
-		lblNewLabel_2.setBounds(0, 0, 450, 232);
+		lblNewLabel_2.setIcon(new ImageIcon(frmLogin.class.getResource("/ima1/Login.jpg")));
+		lblNewLabel_2.setBounds(0, -1, 437, 198);
 		contentPane.add(lblNewLabel_2);
 	}
 
