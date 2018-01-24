@@ -23,6 +23,8 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -35,7 +37,6 @@ import java.awt.event.MouseEvent;
 public class Registros extends JFrame {
 
 	private JPanel contentPane;
-	private JTable table_2;
 	private JTable table;
 
 	/**
@@ -67,17 +68,16 @@ public class Registros extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		this.setLocationRelativeTo(null);
-
 		
-		
-		
-		JButton btnInsertar = new JButton("insertar");
+		JButton btnInsertar = new JButton("REVISAR  SU ORDEN");
+		btnInsertar.setFont(new Font("Arial Black", Font.BOLD, 13));
+		btnInsertar.setBackground(new Color(50, 205, 50));
 		btnInsertar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				mostrarDatos();
 			}
 		}); 
-		btnInsertar.setBounds(10, 380, 89, 23);
+		btnInsertar.setBounds(60, 429, 220, 51);
 		contentPane.add(btnInsertar);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -87,21 +87,44 @@ public class Registros extends JFrame {
 		table = new JTable();
 		scrollPane.setViewportView(table);
 		
-		JButton btnModificar = new JButton("modificar");
-		btnModificar.setBounds(210, 380, 89, 23);
-		contentPane.add(btnModificar);
-		
-		JButton btnActu = new JButton("actualizar");
-		btnActu.setBounds(488, 380, 89, 23);
-		contentPane.add(btnActu);
-		
-		JButton btnEliminar = new JButton("eliminar");
+		JButton btnEliminar = new JButton("ELIMINAR");
+		btnEliminar.setForeground(Color.ORANGE);
+		btnEliminar.setFont(new Font("Arial Black", Font.ITALIC, 14));
+		btnEliminar.setBackground(new Color(255, 0, 0));
 		btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				
-				 
-				 eliminacion();
-				 
+				Connection con = null;
+				try {
+					
+					Class.forName("com.mysql.jdbc.Driver");
+					String url = "jdbc:mysql://localhost/restaurante";
+					String usr = "root";
+					//String psw = "RARO97";
+					String psw = "";//
+
+					
+					con = DriverManager.getConnection(url, usr, psw);
+					
+				} catch (ClassNotFoundException e) {
+					System.out.println("Error");
+				} catch (SQLException e) {
+					System.out.println("Error con la  conexión de BD");
+				}
+				
+				int fila = table.getSelectedRow();
+		        String valor = table.getValueAt(fila,0).toString();
+		        if (fila>=0){
+		            try {
+		                PreparedStatement pps = (PreparedStatement) con.prepareStatement("DELETE FROM alimentos WHERE idalimentos='"+valor+"'");
+		                pps.executeUpdate();
+		                JOptionPane.showMessageDialog(null,"DESEA ELIMINAR \n ESTE PLATILLO");
+		                mostrarDatos();
+		            } catch (SQLException ex) {
+		                Logger.getLogger(Registros.class.getName()).log(Level.SEVERE, null, ex);
+		            }
+		        }
+				
 				
 			}
 		});
@@ -109,23 +132,26 @@ public class Registros extends JFrame {
 			
 			}
 		);
-		btnEliminar.setBounds(714, 380, 89, 23);
+		btnEliminar.setBounds(332, 429, 170, 51);
 		contentPane.add(btnEliminar);
 		
 		JLabel lblNewLabel = new JLabel("REGISTRO DE SU ORDEN");
-		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD, 17));
+		lblNewLabel.setForeground(Color.RED);
+		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(10, 11, 793, 23);
+		lblNewLabel.setBounds(-103, 11, 793, 23);
 		contentPane.add(lblNewLabel);
 		
-		JButton btnRegresar = new JButton("regresar");
+		JButton btnRegresar = new JButton("REGRESAR");
+		btnRegresar.setFont(new Font("Arial Black", Font.BOLD, 14));
+		btnRegresar.setBackground(Color.ORANGE);
+		btnRegresar.setForeground(Color.RED);
 		btnRegresar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 Registros.this.dispose();
 			}
 		});
-		btnRegresar.setBounds(714, 503, 89, 23);
+		btnRegresar.setBounds(663, 482, 140, 44);
 		contentPane.add(btnRegresar);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
@@ -133,94 +159,38 @@ public class Registros extends JFrame {
 		lblNewLabel_1.setBounds(0, 0, 854, 595);
 		contentPane.add(lblNewLabel_1);
 	}
-
-
-		public void eliminar() throws SQLException {
-			
-		}
-		
-		
 		public void mostrarDatos() {
-
 			Connection con = null;
 			try {
 				
 				Class.forName("com.mysql.jdbc.Driver");
 				String url = "jdbc:mysql://localhost/restaurante";
 				String usr = "root";
-				String psw = "RARO97";
-				//String psw = "";//
-
-				
-				con = DriverManager.getConnection(url, usr, psw);
-				
+				//String psw = "RARO97";
+				String psw = "";//
+				con = DriverManager.getConnection(url, usr, psw);			
 			} catch (ClassNotFoundException e) {
 				System.out.println("Error");
 			} catch (SQLException e) {
 				System.out.println("Error con la  conexión de BD");
-			}
-			
+			}	
 			String sql = "select * from alimentos";
 			Statement st;
 			
 			DefaultTableModel modelo = new DefaultTableModel();
-			modelo.addColumn("PLATILLOS RODENADOS");
-		//	modelo.addColumn("comida");
-			
-
-				table.setModel(modelo);
-				
+			modelo.addColumn("#");
+			modelo.addColumn("PLATILLO ORDENADO");
+			table.setModel(modelo);
 				String[] dato = new String[3];
 				try {
 					st = con.createStatement();
-					ResultSet resul = st.executeQuery(sql);
-					
+					ResultSet resul = st.executeQuery(sql);				
 					while (resul.next()) {
-						//dato[0]=resul.getString(1);
-						dato[0]=resul.getString(2);
-						
-						modelo.addRow(dato);
-						
+						dato[0]=resul.getString(1);
+						dato[1]=resul.getString(2);	
+						modelo.addRow(dato);					
 					}
 				} catch (Exception e) {
 				}
-		
 		}
- 
-		public void eliminacion() {
-			
-			
-
-			 Connection con = null;
-			 
-				try {
-					
-					Class.forName("com.mysql.jdbc.Driver");
-					String url = "jdbc:mysql://localhost/Restaurante";
-					String usr = "root";
-					String psw = "RARO97";
-					//String psw = "";
-					
-					con = DriverManager.getConnection(url, usr, psw);
-
-					int fila= table.getSelectedRow();
-					//System.out.println(table.getSelectedColumnCount());
-					String comida="";
-				
-					comida= table.getValueAt(fila, 0).toString();
-					
-		
-					 PreparedStatement pst=(PreparedStatement) con.prepareStatement("DELETE FROM alimentos WHERE comida='"+comida+"' ");
-					 pst.executeUpdate();
-					 mostrarDatos();
-					 
-						
-							
-				} catch (ClassNotFoundException e1) {
-					System.out.println("Error");
-				} catch (SQLException e1) {
-					System.out.println("Error con LAAa  conexión de BD");
-				}
-		}
-
 }
