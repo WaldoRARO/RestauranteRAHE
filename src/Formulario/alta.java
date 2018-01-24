@@ -57,7 +57,7 @@ public class alta extends JFrame {
 	 */
 	public alta() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 1200, 600);
+		setBounds(100, 100, 1213, 612);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -533,9 +533,9 @@ public class alta extends JFrame {
 		lblNewLabel_4.setBounds(685, 460, 203, 14);
 		contentPane.add(lblNewLabel_4);
 		
-		JLabel lblNewLabel_5 = new JLabel("New label");
-		lblNewLabel_5.setIcon(new ImageIcon(alta.class.getResource("/ima1/alta1.jpg")));
-		lblNewLabel_5.setBounds(0, 0, 1184, 561);
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(alta.class.getResource("/ima1/ALTAVENTANA.jpg")));
+		lblNewLabel_5.setBounds(0, 0, 1304, 607);
 		contentPane.add(lblNewLabel_5);
 	}
 }

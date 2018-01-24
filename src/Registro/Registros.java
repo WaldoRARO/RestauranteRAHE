@@ -33,11 +33,17 @@ import java.awt.Font;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
 
 public class Registros extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	ResultSet resul ;
 
 	/**
 	 * Launch the application.
@@ -100,8 +106,8 @@ public class Registros extends JFrame {
 					Class.forName("com.mysql.jdbc.Driver");
 					String url = "jdbc:mysql://localhost/restaurante";
 					String usr = "root";
-					//String psw = "RARO97";
-					String psw = "";//
+					String psw = "RARO97";
+					//String psw = "";//
 
 					
 					con = DriverManager.getConnection(url, usr, psw);
@@ -151,12 +157,27 @@ public class Registros extends JFrame {
 				 Registros.this.dispose();
 			}
 		});
-		btnRegresar.setBounds(663, 482, 140, 44);
+		btnRegresar.setBounds(664, 506, 140, 44);
 		contentPane.add(btnRegresar);
+		
+		JButton btnOrden = new JButton("ENVIAR");
+		btnOrden.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				
+
+				DatosMeseros();				
+				
+			}
+		});
+		btnOrden.setForeground(Color.MAGENTA);
+		btnOrden.setFont(new Font("Arial Black", Font.ITALIC, 14));
+		btnOrden.setBackground(new Color(154, 205, 50));
+		btnOrden.setBounds(599, 429, 170, 51);
+		contentPane.add(btnOrden);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/restaurante.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 854, 595);
+		lblNewLabel_1.setBounds(0, 0, 834, 579);
 		contentPane.add(lblNewLabel_1);
 	}
 		public void mostrarDatos() {
@@ -166,8 +187,8 @@ public class Registros extends JFrame {
 				Class.forName("com.mysql.jdbc.Driver");
 				String url = "jdbc:mysql://localhost/restaurante";
 				String usr = "root";
-				//String psw = "RARO97";
-				String psw = "";//
+				String psw = "RARO97";
+				//String psw = "";//
 				con = DriverManager.getConnection(url, usr, psw);			
 			} catch (ClassNotFoundException e) {
 				System.out.println("Error");
@@ -192,5 +213,59 @@ public class Registros extends JFrame {
 					}
 				} catch (Exception e) {
 				}
+		}
+		
+		public void DatosMeseros() {
+		
+
+		/*	File agre = new File("C:\\Users\\Administrador\\Desktop\\prueba.txt");
+			
+		try {
+				
+				BufferedWriter bw = new BufferedWriter(new  FileWriter(agre, true)); //docuemntos				
+				
+		
+				
+				
+				bw.newLine();
+				bw.close();
+
+				bw.newLine();
+				bw.close();
+
+				
+			
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+			*/
+			
+			 try {
+
+		            String restauranteRAHE = "C:/Users/Administrador/Desktop/DatosTabla.txt";
+		            BufferedWriter bfw = new BufferedWriter(new FileWriter(restauranteRAHE ));
+
+		            for (int i = 0 ; i < table.getRowCount(); i++) 
+		            {
+		                for(int j = 0 ; j < table.getColumnCount();j++) 
+		                {
+		                    bfw.write((String)(table.getValueAt(i,j)));
+		                    if (j < table.getColumnCount() -1) { 
+		                        bfw.write(",");
+		                    }
+		                }
+		                bfw.newLine(); 
+		            }
+
+		            bfw.close(); 
+		            JOptionPane.showMessageDialog(table, "La orden llego a la terminal !");
+		         
+		        } catch (IOException e) {
+		        	  JOptionPane.showMessageDialog(table, "Ocurrio un error con su orden  !"+ e.getMessage());
+		          
+		        }
+			
+			
+			
 		}
 }
