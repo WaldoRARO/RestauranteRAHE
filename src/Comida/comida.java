@@ -96,7 +96,7 @@ public class comida extends JFrame implements ActionListener{
 			String url = "jdbc:mysql://localhost/restaurante";
 			String usr = "root";
 			//String psw = "RARO97";
-			String psw = "";//
+			String psw = "";
 
 			
 			con = DriverManager.getConnection(url, usr, psw);
