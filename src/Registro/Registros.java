@@ -66,9 +66,9 @@ public class Registros extends JFrame {
 	 * Create the frame.
 	 */
 	public Registros() {
-		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 850, 600);
+		setBounds(100, 100, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -83,11 +83,11 @@ public class Registros extends JFrame {
 				mostrarDatos();
 			}
 		}); 
-		btnInsertar.setBounds(60, 429, 220, 51);
+		btnInsertar.setBounds(292, 285, 212, 44);
 		contentPane.add(btnInsertar);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(60, 55, 709, 314);
+		scrollPane.setBounds(36, 57, 709, 217);
 		contentPane.add(scrollPane);
 		
 		table = new JTable();
@@ -138,14 +138,14 @@ public class Registros extends JFrame {
 			
 			}
 		);
-		btnEliminar.setBounds(332, 429, 170, 51);
+		btnEliminar.setBounds(10, 506, 170, 44);
 		contentPane.add(btnEliminar);
 		
 		JLabel lblNewLabel = new JLabel("REGISTRO DE SU ORDEN");
 		lblNewLabel.setForeground(Color.RED);
 		lblNewLabel.setFont(new Font("Arial Black", Font.BOLD, 17));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(-103, 11, 793, 23);
+		lblNewLabel.setBounds(0, 23, 793, 23);
 		contentPane.add(lblNewLabel);
 		
 		JButton btnRegresar = new JButton("REGRESAR");
@@ -157,7 +157,7 @@ public class Registros extends JFrame {
 				 Registros.this.dispose();
 			}
 		});
-		btnRegresar.setBounds(664, 506, 140, 44);
+		btnRegresar.setBounds(629, 506, 140, 44);
 		contentPane.add(btnRegresar);
 		
 		JButton btnOrden = new JButton("ENVIAR");
@@ -172,12 +172,12 @@ public class Registros extends JFrame {
 		btnOrden.setForeground(Color.MAGENTA);
 		btnOrden.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		btnOrden.setBackground(new Color(154, 205, 50));
-		btnOrden.setBounds(599, 429, 170, 51);
+		btnOrden.setBounds(315, 389, 170, 51);
 		contentPane.add(btnOrden);
 		
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/restaurante.jpg")));
-		lblNewLabel_1.setBounds(0, 0, 834, 579);
+		lblNewLabel_1.setIcon(new ImageIcon(Registros.class.getResource("/ima1/fu.jpg")));
+		lblNewLabel_1.setBounds(0, -2, 793, 575);
 		contentPane.add(lblNewLabel_1);
 	}
 		public void mostrarDatos() {
@@ -199,7 +199,7 @@ public class Registros extends JFrame {
 			Statement st;
 			
 			DefaultTableModel modelo = new DefaultTableModel();
-			modelo.addColumn("#");
+			modelo.addColumn("# DE PLATILLO");
 			modelo.addColumn("PLATILLO ORDENADO");
 			table.setModel(modelo);
 				String[] dato = new String[3];

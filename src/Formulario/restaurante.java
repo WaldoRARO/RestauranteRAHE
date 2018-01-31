@@ -55,12 +55,14 @@ public class restaurante extends JFrame  {
 	 * Create the frame.
 	 */
 	public restaurante() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
 		//contentPane.setForeground(Color.RED);
 		contentPane.setBorder(null);
 		setContentPane(contentPane);
+		this.setLocationRelativeTo(null);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		JToolBar toolBar = new JToolBar();

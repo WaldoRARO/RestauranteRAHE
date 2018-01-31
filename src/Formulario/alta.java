@@ -20,6 +20,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.awt.event.ActionEvent;
+import java.awt.SystemColor;
 
 public class alta extends JFrame {
 
@@ -57,7 +58,7 @@ public class alta extends JFrame {
 	 */
 	public alta() {
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
-		setBounds(100, 100, 1213, 612);
+		setBounds(100, 100, 1200, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -182,7 +183,7 @@ public class alta extends JFrame {
 		btnNewButton_3.setBounds(1034, 7, 129, 43);
 		contentPane.add(btnNewButton_3);
 		
-		JLabel lblAltaDePaltillos = new JLabel("ALTA DE PALTILLOS");
+		JLabel lblAltaDePaltillos = new JLabel("ALTA DE PLATILLOS");
 		lblAltaDePaltillos.setBackground(Color.BLACK);
 		lblAltaDePaltillos.setForeground(Color.RED);
 		lblAltaDePaltillos.setFont(new Font("Arial Black", Font.BOLD, 30));
@@ -191,21 +192,21 @@ public class alta extends JFrame {
 		contentPane.add(lblAltaDePaltillos);
 		
 		JLabel lblComidas = new JLabel("CARNE");
-		lblComidas.setForeground(Color.ORANGE);
+		lblComidas.setForeground(SystemColor.desktop);
 		lblComidas.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		lblComidas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblComidas.setBounds(134, 82, 87, 14);
 		contentPane.add(lblComidas);
 		
 		JLabel lblBebidas = new JLabel("ENTRADAS");
-		lblBebidas.setForeground(Color.ORANGE);
+		lblBebidas.setForeground(SystemColor.desktop);
 		lblBebidas.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		lblBebidas.setHorizontalAlignment(SwingConstants.CENTER);
 		lblBebidas.setBounds(139, 150, 93, 14);
 		contentPane.add(lblBebidas);
 		
 		JLabel lblPostres = new JLabel("ENSALADAS");
-		lblPostres.setForeground(Color.ORANGE);
+		lblPostres.setForeground(SystemColor.desktop);
 		lblPostres.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		lblPostres.setHorizontalAlignment(SwingConstants.CENTER);
 		lblPostres.setBounds(127, 218, 123, 14);
@@ -213,7 +214,7 @@ public class alta extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("MARISCOS");
 		lblNewLabel_1.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblNewLabel_1.setForeground(Color.ORANGE);
+		lblNewLabel_1.setForeground(SystemColor.desktop);
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setBounds(134, 287, 116, 14);
 		contentPane.add(lblNewLabel_1);
@@ -356,20 +357,20 @@ public class alta extends JFrame {
 		contentPane.add(btnNewButton_7);
 		
 		JLabel lblHelados = new JLabel("HELADOS");
-		lblHelados.setForeground(Color.ORANGE);
+		lblHelados.setForeground(SystemColor.desktop);
 		lblHelados.setFont(new Font("Arial Black", Font.ITALIC, 14));
 		lblHelados.setBounds(645, 101, 109, 14);
 		contentPane.add(lblHelados);
 		
 		JLabel lblTartas = new JLabel("TARTAS");
 		lblTartas.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblTartas.setForeground(Color.ORANGE);
+		lblTartas.setForeground(SystemColor.desktop);
 		lblTartas.setBounds(645, 184, 109, 14);
 		contentPane.add(lblTartas);
 		
 		JLabel lblEspecialidades = new JLabel("ESPECIALIDADES");
 		lblEspecialidades.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblEspecialidades.setForeground(Color.ORANGE);
+		lblEspecialidades.setForeground(SystemColor.desktop);
 		lblEspecialidades.setBounds(645, 263, 137, 14);
 		contentPane.add(lblEspecialidades);
 		
@@ -467,7 +468,7 @@ public class alta extends JFrame {
 		});
 		btnNewButton_10.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 14));
 		btnNewButton_10.setBackground(Color.ORANGE);
-		btnNewButton_10.setBounds(527, 404, 137, 34);
+		btnNewButton_10.setBounds(645, 402, 137, 34);
 		contentPane.add(btnNewButton_10);
 		
 		JButton btnNewButton_11 = new JButton("REGISTRAR");
@@ -496,45 +497,45 @@ public class alta extends JFrame {
 		});
 		btnNewButton_11.setFont(new Font("Arial Black", Font.BOLD | Font.ITALIC, 14));
 		btnNewButton_11.setBackground(Color.ORANGE);
-		btnNewButton_11.setBounds(527, 487, 137, 32);
+		btnNewButton_11.setBounds(645, 485, 137, 32);
 		contentPane.add(btnNewButton_11);
 		
 		textField_9 = new JTextField();
-		textField_9.setBounds(686, 405, 338, 32);
+		textField_9.setBounds(791, 405, 338, 32);
 		contentPane.add(textField_9);
 		textField_9.setColumns(10);
 		
 		textField_10 = new JTextField();
-		textField_10.setBounds(686, 487, 338, 32);
+		textField_10.setBounds(791, 487, 338, 32);
 		contentPane.add(textField_10);
 		textField_10.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("REFRESCOS");
 		lblNewLabel.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblNewLabel.setForeground(Color.ORANGE);
+		lblNewLabel.setForeground(SystemColor.desktop);
 		lblNewLabel.setBounds(20, 380, 121, 14);
 		contentPane.add(lblNewLabel);
 		
 		JLabel lblNewLabel_2 = new JLabel("BEBIDAS CON ALCOHOL");
 		lblNewLabel_2.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblNewLabel_2.setForeground(Color.ORANGE);
-		lblNewLabel_2.setBounds(20, 462, 251, 14);
+		lblNewLabel_2.setForeground(SystemColor.desktop);
+		lblNewLabel_2.setBounds(168, 462, 251, 14);
 		contentPane.add(lblNewLabel_2);
 		
 		JLabel lblNewLabel_3 = new JLabel("AGUAS");
 		lblNewLabel_3.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblNewLabel_3.setForeground(Color.ORANGE);
-		lblNewLabel_3.setBounds(686, 380, 129, 14);
+		lblNewLabel_3.setForeground(SystemColor.desktop);
+		lblNewLabel_3.setBounds(791, 380, 129, 14);
 		contentPane.add(lblNewLabel_3);
 		
 		JLabel lblNewLabel_4 = new JLabel("BEBIDAS PREPARADAS");
-		lblNewLabel_4.setForeground(Color.ORANGE);
+		lblNewLabel_4.setForeground(SystemColor.desktop);
 		lblNewLabel_4.setFont(new Font("Arial Black", Font.ITALIC, 14));
-		lblNewLabel_4.setBounds(685, 460, 203, 14);
+		lblNewLabel_4.setBounds(791, 462, 203, 14);
 		contentPane.add(lblNewLabel_4);
 		
 		JLabel lblNewLabel_5 = new JLabel("");
-		lblNewLabel_5.setIcon(new ImageIcon(alta.class.getResource("/ima1/ALTAVENTANA.jpg")));
+		lblNewLabel_5.setIcon(new ImageIcon(alta.class.getResource("/ima1/alta.jpg")));
 		lblNewLabel_5.setBounds(0, 0, 1304, 607);
 		contentPane.add(lblNewLabel_5);
 	}

@@ -51,12 +51,15 @@ public class Postres extends JFrame {
 	 * @throws SQLException 
 	 */
 	public Postres() throws SQLException {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
+
 		////////////////COMBOBOX
 		Connection con = null;
 		try {

@@ -81,6 +81,7 @@ public class bebidas extends JFrame {
 	 * @throws SQLException 
 	 */
 	public bebidas() throws SQLException {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
 		setBounds(100, 100, 850, 600);
 		contentPane = new JPanel();
@@ -88,6 +89,8 @@ public class bebidas extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		this.setLocationRelativeTo(null);
+
 		
 		JLabel lblBebidas = new JLabel("REFRESCOS");
 		lblBebidas.setForeground(Color.WHITE);
