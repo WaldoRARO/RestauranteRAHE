@@ -242,7 +242,7 @@ public class Registros extends JFrame {
 			
 			 try {
 
-		            String restauranteRAHE = "C:/Users/Administrador/Desktop/DatosTabla.txt";
+		            String restauranteRAHE = "C:\\Users\\jahc6\\Desktop\\DatosTabla.txt";
 		            BufferedWriter bfw = new BufferedWriter(new FileWriter(restauranteRAHE ));
 
 		            for (int i = 0 ; i < table.getRowCount(); i++) 

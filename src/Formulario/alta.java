@@ -123,11 +123,11 @@ public class alta extends JFrame {
 					//String psw = "RARO97";
 					String psw = "";
 					con = DriverManager.getConnection(url, usr, psw);
-					String usuario= textField_2.getText();
+					String usuario= textField_1.getText();
 					String query = "INSERT INTO entrada (platillo) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_1.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -153,11 +153,11 @@ public class alta extends JFrame {
 					//String psw = "RARO97";
 					String psw = "";
 					con = DriverManager.getConnection(url, usr, psw);
-					String usuario= textField_1.getText();
+					String usuario= textField_2.getText();
 					String query = "INSERT INTO ensaladas (platillo) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_2.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -239,7 +239,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO mariscos (platillo) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_3.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -284,7 +284,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO helados (postre) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_4.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -313,7 +313,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO tartas (postre) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_5.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -342,7 +342,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO especialidades (postre) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_6.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -399,7 +399,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO refresco (bebida) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_7.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -428,7 +428,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO bebida_alcoholica (bebida) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_8.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -457,7 +457,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO aguas (bebida) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_9.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
@@ -486,7 +486,7 @@ public class alta extends JFrame {
 					String query = "INSERT INTO bebida_preparadas (bebida) values ('"+usuario+"')";
 					Statement stm = con.createStatement();
 					stm.executeUpdate(query);
-					textField.setText("");
+					textField_10.setText("");
 					JOptionPane.showMessageDialog(null, "USUARIO INGRESADO A LA BD");
 				} catch (ClassNotFoundException e1) {
 					System.out.println("Error");
